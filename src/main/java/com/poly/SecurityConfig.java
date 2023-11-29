@@ -63,7 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
 		http.authorizeRequests().antMatchers("/order/**").authenticated().antMatchers("/admin/**")
-				.hasAnyRole("STAF", "DIRE").antMatchers("/rest/authorities").hasRole("DIRE").anyRequest().permitAll();
+				.hasAnyRole("DIRE", "STAF").antMatchers("/rest/authorities").hasRole("DIRE").anyRequest().permitAll();
 		http.formLogin().loginPage("/security/login/form").loginProcessingUrl("/security/login")
 				.defaultSuccessUrl("/security/login/success", false).failureUrl("/security/login/error");
 		http.rememberMe().tokenValiditySeconds(86400);
