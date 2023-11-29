@@ -1,0 +1,47 @@
+<div xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic (~{::main})}">
+	<main>
+		<div class="panel panel-primary" th:fragment="cart_frag">
+			<div class="panel-heading">SHOPPING CART</div>
+			<div ng-if="!cart.items.length" class="panel-body text-center">
+				<h3 style="font-variant: small-caps;">No items in your shopping cart</h3>
+			</div>
+			<table ng-if="cart.items.length" class="table table-collapse table-bordered">
+				<thead class="bg-success" style="font-size:14px">
+					<tr>
+						<th>Id</th>
+						<th>Name</th>
+						<th>Price</th>
+						<th>Quantity</th>
+						<th>Amount</th>
+						<th>#</th>
+					</tr>
+				</thead>
+				<tbody style="font-size:14px">
+					<tr ng-repeat="item in cart.items">
+						<td style="vertical-align:middle;">{{item.id}}</td>
+						<td style="vertical-align:middle;">{{item.name}}</td>
+						<td style="vertical-align:middle;">${{item.price | number : 2}}</td>
+						<td style="vertical-align:middle;">
+							<input ng-change="cart.saveToLocalStorage()" ng-model="item.qty" type="number" min="1"
+								style="width: 60px;" />
+						</td>
+						<td style="vertical-align:middle;">${{cart.amt_of(item) | number : 2}}</td>
+						<td style="vertical-align:middle;">
+							<button ng-click="cart.remove(item.id)" class="btn btn-sm btn-danger">
+								<i class="glyphicon glyphicon-trash"></i>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div ng-if="cart.items.length" class="panel-footer">
+				<button ng-click="cart.clear()" class="btn btn-danger">
+					<i class="glyphicon glyphicon-trash"></i> Clear
+				</button>
+				<a th:href="@{/order/checkout}" class="btn btn-primary">
+					<i class="glyphicon glyphicon-hand-right"></i> Checkout
+				</a>
+			</div>
+		</div>
+	</main>
+</div>

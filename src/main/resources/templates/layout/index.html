@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="dynamic(main)">
+<head>
+<meta charset="utf-8">
+<title>Java 6 Store</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<!--User-defined Scripts-->
+<link th:href="@{/assets/css/shopping-cart-app.css}" rel="stylesheet" />
+<script th:src="@{/assets/js/shopping-cart-app.js}"></script>
+</head>
+<body class="container" ng-app="app" ng-controller="cart-ctrl">
+	<header class="row">
+		<h2 class="alert alert-success">
+			<i class="glyphicon glyphicon-education"></i> Shopping Cart
+		</h2>
+	</header>
+	<div class="row">
+		<nav th:replace="~{/layout/_menu}"></nav>
+	</div>
+	<div class="row">
+		<article class="col-sm-9">
+			<main class="row" th:insert="${main}"></main>
+		</article>
+		<aside class="col-sm-3">
+			<div class="row" style="padding-left: 20px;">
+				<div th:replace="~{/layout/_cart-info}"></div>
+				<div th:replace="~{/layout/_category}"></div>
+			</div>
+		</aside>
+	</div>
+	<footer class="row">
+		<div class="panel panel-default">
+			<div class="panel-body text-center bg-primary">
+				<h4>&copy; 2022 by FPT Polytechnic. All rights reserved.</h4>
+			</div>
+		</div>
+	</footer>
+	<script th:src="@{/assets/js/shopping-cart-ctrl.js}"></script>
+</body>
+</html>
