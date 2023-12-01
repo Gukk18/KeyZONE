@@ -1,8 +1,7 @@
 <div xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic (~{::main})}">
-	<main>
-		<div class="panel panel-primary" th:fragment="cart_frag">
-			<div class="panel-heading">SHOPPING CART</div>
-			<div ng-if="!cart.items.length" class="panel-body text-center">
+	<main style="margin-left: 22%">
+			<div >SHOPPING CART</div>
+			<div ng-if="!cart.items.length" >
 				<h3 style="font-variant: small-caps;">No items in your shopping cart</h3>
 			</div>
 			<table ng-if="cart.items.length" class="table table-collapse table-bordered">
@@ -42,6 +41,6 @@
 					<i class="glyphicon glyphicon-hand-right"></i> Checkout
 				</a>
 			</div>
-		</div>
+		
 	</main>
 </div>

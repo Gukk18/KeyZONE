@@ -1,11 +1,12 @@
 <div xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic (~{::main})}">
 	<main>
-		<form action="/security/login" method="post" class="col-sm-8 col-sm-offset-2">
+		<form action="/security/login" method="post" style="margin-top: 100px; margin-left: 42%">
 			<div class="panel panel-primary">
 				<div class="panel-heading">SHOPPING CART LOGIN</div>
+				<i class="pull-left text-danger" th:text="${message}"></i>
 				<div class="panel-body">
 					<div class="form-group">
-						<div>Username:</div>
+						<div>User name:</div>
 						<input name="username" class="form-control">
 					</div>
 					<div class="form-group">
@@ -20,7 +21,7 @@
 					</div>
 				</div>
 				<div class="panel-footer text-right">
-					<i class="pull-left text-danger" th:text="${message}"></i>
+					
 					<button class="btn btn-success">Login</button>
 				</div>
 			</div>
