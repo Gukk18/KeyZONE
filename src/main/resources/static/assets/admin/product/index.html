@@ -1,12 +1,7 @@
-<ul class="nav nav-tabs" style="font-variant: small-caps;">
-    <li><a href="" data-toggle="tab" data-target="#edit">EDITION</a></li>
-    <li class="active"><a href="" data-toggle="tab" data-target="#list">LIST</a></li>
-</ul>
-<div class="tab-content">
-    <div id="edit" class="tab-pane fade">
+
+    <div id="edit" role="tabpanel" style="margin-bottom: 30px">
         <div ng-include="'/assets/admin/product/_form.html'"></div>
     </div>
-    <div id="list" class="tab-pane fade in active">
+    <div id="list" role="tabpanel">
         <div ng-include="'/assets/admin/product/_table.html'"></div>
     </div>
-</div>

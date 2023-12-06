@@ -1,34 +1,166 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
+
 <head>
-<meta charset="utf-8">
-<title>Java 6 Store Administation</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KeyZONE</title>
+  <link rel="shortcut icon" type="image/png" href="web/images/logos/favicon.png" />
+  <link rel="stylesheet" href="web/css/styles.min.css" />
 </head>
+
 <body class="container" ng-app="admin-app">
-	<header class="row">
-		<h2 class="alert alert-success">Admin Dashboard</h2>
-	</header>
-	<div class="row">
-		<div ng-include="'/assets/admin/_menu.html'"></div>
-	</div>
-	<main class="row">
-		<p class="ng-view" />
-	</main>
-	<footer class="row">
-		<div class="panel panel-default">
-			<div class="panel-body text-center bg-primary">
-				<h4>FPT Polytechnic &copy; 2022. All rights reserved.</h4>
-			</div>
-		</div>
-	</footer>
-	<!-- User-defined Scripts -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="/" class="text-nowrap logo-img">
+            <h3>KeyZONE</h3>
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="" >
+          <ul id="sidebarnav">
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">Home</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="#!statistical" aria-expanded="false">
+                <span>
+                  <i class="ti ti-layout-dashboard"></i>
+                </span>
+                <span class="hide-menu">Statistical</span>
+              </a>
+            </li>
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">Management section</span>
+            </li>
+            
+           
+            
+            <li class="sidebar-item">
+              <a class="sidebar-link"  href="#!product" aria-expanded="false">
+                <span>
+                  <i class="ti ti-cards"></i>
+                </span>
+                <span class="hide-menu">Products management</span>
+              </a>
+            </li>
+            
+             <li class="sidebar-item">
+              <a class="sidebar-link" href="#!category" aria-expanded="false">
+                <span>
+                  <i class="ti ti-cards"></i>
+                </span>
+                <span class="hide-menu">Category management</span>
+              </a>
+            </li>
+            
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="#!account" aria-expanded="false">
+                <span>
+                  <i class="ti ti-cards"></i>
+                </span>
+                <span class="hide-menu">Account management</span>
+              </a>
+            </li>
+            
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="#!authorize" aria-expanded="false">
+                <span>
+                  <i class="ti ti-cards"></i>
+                </span>
+                <span class="hide-menu">Authority</span>
+              </a>
+            </li>
+            
+           
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/auth/logout" aria-expanded="false">
+                <span>
+                  <i class="ti ti-cards"></i>
+                </span>
+                <span class="hide-menu">Log out</span>
+              </a>
+            </li>
+          </ul>
+         
+        </nav>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+      <header class="app-header">
+     
+          
+          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+              <li class="nav-item dropdown" style="margin-left:750px;">
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <img src="web/images/profile/user-1.jpg" alt=""  width="35" height="35" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                  <div class="message-body">
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-user fs-6"></i>
+                      <p class="mb-0 fs-9">My Profile</p>
+                    </a>
+                    
+                  
+                    <a href="/" class="btn btn-outline-primary mx-3 mt-2 d-block">Home page</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+      
+      </header>
+      <!--  Header End -->
+      <div class="container-fluid">
+        <!--  Row 1 -->      
+           <main>
+				<p class="ng-view"/>
+			</main>
+
+    </div>
+    <style>
+	.a{text-decoration: none}
+
+	</style>
+
+  </div>
+  <script src="web/libs/jquery/dist/jquery.min.js"></script>
+  <script src="web/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="web/js/sidebarmenu.js"></script>
+  <script src="web/js/app.min.js"></script>
+  <script src="web/libs/apexcharts/dist/apexcharts.min.js"></script>
+  <script src="web/libs/simplebar/dist/simplebar.js"></script>
+  <script src="web/js/dashboard.js"></script>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
 	<script src="/assets/admin/js/admin-app.js"></script>
 	<script src="/assets/admin/js/product-ctrl.js"></script>
 	<script src="/assets/admin/js/authority-ctrl.js"></script>
+		<script src="/assets/admin/js/category-ctrl.js"></script>
+	
+	</div>
 </body>
+
 </html>

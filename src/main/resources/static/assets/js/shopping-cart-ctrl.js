@@ -13,6 +13,7 @@ app.controller("cart-ctrl", function($scope, $http){
             		resp.data.qty = 1;
             		this.items.push(resp.data);
             		this.saveToLocalStorage();
+            		alert("Welcome!");
             	})
             }
         },
@@ -70,11 +71,11 @@ app.controller("cart-ctrl", function($scope, $http){
 				var order = angular.copy(this);
 				// Thực hiện đặt hàng
 				$http.post("/rest/orders", order).then(resp => {
-					alert("Đặt hàng thành công!");
+					alert("Purchase successfully !");
 					$cart.clear();
 					location.href = "/order/detail/" + resp.data.id;
 				}).catch(error => {
-					alert("Đặt hàng lỗi!")
+					alert("Purchase error !")
 					console.log(error)
 				})
 			}

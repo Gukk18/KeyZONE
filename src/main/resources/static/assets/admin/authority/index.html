@@ -1,5 +1,6 @@
+<!-- <h3 style="margin-left: 10px; margin-bottom: 30px">Authority</h3>
 <div class="panel panel-default">
-	<div class="panel-heading">AUTHORIZING</div>
+	
 	<table class="table table-collapse table-bordered">
 		<thead class="bg-success">
 			<tr>
@@ -16,4 +17,65 @@
 			</tr>
 		</tbody>
 	</table>
+</div> -->
+<div class="page-content-wrapper">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="page-title-box">
+					
+				<h3 style="margin-left: 10px; margin-bottom: 30px">Authorizing </h3>
+				</div>
+			</div>
+		</div>
+		<table  class="table table-hover">
+			<thead class="bg-success" >
+				<tr>
+					<th>Username</th>
+					<th ng-repeat="role in roles" class="text-center">{{role.name}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="acc in pager.admins" ng-init="rindex = $index">
+					<td class="align-center">{{acc.fullname}}</td>
+					
+					<th ng-repeat="role in roles" ng-init="cindex = $index" class="align-center text-center">
+						<div class="custom-control custom-checkbox">
+						  <input type="checkbox"
+								 class="custom-control-input"
+								 id="{{'authority_' + rindex + cindex}}"
+								 ng-checked="authority_of(acc, role)"
+								 ng-model="checkboxStates[acc.id + '_' + role]"
+								 ng-click="authority_changed(acc, role)">
+						  <label class="custom-control-label" for="{{'authority_' + rindex + cindex}}"></label>
+						</div>
+					  </th>
+				</tr>
+			</tbody>
+		</table>
+		<div class="card-footer text-center">
+			<button ng-click="pager.first()" class="btn btn-danger">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+			  <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+			</svg>
+			</button>
+			<button ng-click="pager.prev()" class="btn btn-primary">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left" viewBox="0 0 16 16">
+				  <path d="M10 12.796V3.204L4.519 8zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753z"/>
+				</svg>
+			</button>
+			<button class="btn btn-success">{{pager.page + 1}} of {{pager.count}}</button>
+			<button ng-click="pager.next()" class="btn btn-primary">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right" viewBox="0 0 16 16">
+			  <path d="M6 12.796V3.204L11.481 8zm.659.753 5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753z"/>
+			</svg>
+			</button>
+			<button ng-click="pager.last()" class="btn btn-danger">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+		  <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+		</svg>
+			</button>
+		</div>
+	</div>
 </div>
+<script src="/assetss/js/init.js"></script>
