@@ -6,10 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-	 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-	
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
 
 <link th:href="@{/assets/css/style.css}" rel="stylesheet" />
 <script th:src="@{/assets/js/main.js}" defer></script>
@@ -25,11 +24,10 @@
 	<header>
 		<div class="container header_container">
 			<div class="header_left">
-				<h1 style="text-decoration: none;">KeyZONE</h1>
-				<p>Hello there !. We sell everything related to keyboards,
+				<h1>KeyZONE</h1>
+				<p>Hello KeyZONE! . We sell everything related to keyboards,
 					from keycaps to mechanical switches.</p>
-				<a href="#anchor1" class="btn btn-primary"  >Get Started</a>
-				
+				<a href="#" class="btn btn-primary">Get Started</a>
 			</div>
 
 
@@ -42,32 +40,57 @@
 		</div>
 	</header>
 
-	<div id="anchor1" style="background-color: #2e3267" >
+	<section class="courses">
 	
-		      
-		<main style="height: 1500px" th:insert="${main}" class="container text-center"></main>
-		</div>	
-
-	
-<i id="back-to-top" style="margin-left: 95% ; font-size: 2em; color: orange;"  class="fa-solid fa-arrow-up"></i>
-
-	
-	
-
+		<main th:insert="${main}"></main>
 		
+
+	</section>
+	<section class="categories">
+		<div class="container categories_container">
+			<div class="categories_left">
+				<h1>Categories</h1>
+				<p>These shops often have a wider selection of products than
+					brick-and-mortar stores, and they may also offer lower prices</p>
+				<a href="#" class="btn">Learn More</a>
+			</div>
+
+			<div class="categories_right">
+				<article class="category">
+					<img
+						th:src="@{|/assets/images/keyboards-mechanical-keyboard-hd-wallpaper-preview.png|}">
+					<br> <br>
+					<h5>Keyboard</h5>
+					<p>A keyboard is an input device that allows users to type
+						characters</p>
+				</article>
+				<article class="category">
+
+
+					<img
+						th:src="@{|/assets/images/002f5c7c094bcac2634edfa5978f5cdb.png|}">
+					<h5>Keycap</h5>
+					<p>Keycaps are the physical part of a keyboard that the user
+						presses to type</p>
+				</article>
+			</div>
+		</div>
+	</section>
+
+	
 	<section class="faqs">
-		<h2 style="color: #FFD700">Golden Time !</h2>
+		<h2>Frequently Asked Questions</h2>
 		<div class="container faqs__container">
 			<article class="faq">
 				<div class="faq__icon">
 					<i class="fa-solid fa-plus"></i>
 				</div>
-				<div class="question__answer" >
-					<h4>Get voucher</h4>
-					<p>
-					<img id="a" onclick="alert('Get voucher successfully !')"
-						th:src="@{|/assets/images/voucher1.png|}">
-					</p>
+				<div class="question__answer">
+					<h4>Lorem ipsum dolor sit amet.</h4>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+						Minima, vitae, provident explicabo voluptates voluptas assumenda
+						maxime ipsa, animi nulla exercitationem praesentium perspiciatis
+						mollitia. Mollitia modi adipisci, itaque dicta numquam eaque.</p>
 				</div>
 			</article>
 
@@ -76,21 +99,128 @@
 					<i class="fa-solid fa-plus"></i>
 				</div>
 				<div class="question__answer">
-					<h4>Vouchers have been sold out</h4>
-					<p>
-					
-					</p>
+					<h4>Lorem ipsum dolor sit amet.</h4>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+						Minima, vitae, provident explicabo voluptates voluptas assumenda
+						maxime ipsa, animi nulla exercitationem praesentium perspiciatis
+						mollitia. Mollitia modi adipisci, itaque dicta numquam eaque.</p>
 				</div>
 			</article>
 
-			
+			<article class="faq">
+				<div class="faq__icon">
+					<i class="fa-solid fa-plus"></i>
+				</div>
+				<div class="question__answer">
+					<h4>Lorem ipsum dolor sit amet.</h4>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+						Minima, vitae, provident explicabo voluptates voluptas assumenda
+						maxime ipsa, animi nulla exercitationem praesentium perspiciatis
+						mollitia. Mollitia modi adipisci, itaque dicta numquam eaque.</p>
+				</div>
+			</article>
+
+			<article class="faq">
+				<div class="faq__icon">
+					<i class="fa-solid fa-plus"></i>
+				</div>
+				<div class="question__answer">
+					<h4>Lorem ipsum dolor sit amet.</h4>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+						Minima, vitae, provident explicabo voluptates voluptas assumenda
+						maxime ipsa, animi nulla exercitationem praesentium perspiciatis
+						mollitia. Mollitia modi adipisci, itaque dicta numquam eaque.</p>
+				</div>
+			</article>
+
+			<article class="faq">
+				<div class="faq__icon">
+					<i class="fa-solid fa-plus"></i>
+				</div>
+				<div class="question__answer">
+					<h4>Lorem ipsum dolor sit amet.</h4>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+						Minima, vitae, provident explicabo voluptates voluptas assumenda
+						maxime ipsa, animi nulla exercitationem praesentium perspiciatis
+						mollitia. Mollitia modi adipisci, itaque dicta numquam eaque.</p>
+				</div>
+			</article>
+
+			<article class="faq">
+				<div class="faq__icon">
+					<i class="fa-solid fa-plus"></i>
+				</div>
+				<div class="question__answer">
+					<h4>Lorem ipsum dolor sit amet.</h4>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+						Minima, vitae, provident explicabo voluptates voluptas assumenda
+						maxime ipsa, animi nulla exercitationem praesentium perspiciatis
+						mollitia. Mollitia modi adipisci, itaque dicta numquam eaque.</p>
+				</div>
+			</article>
+
+			<article class="faq">
+				<div class="faq__icon">
+					<i class="fa-solid fa-plus"></i>
+				</div>
+				<div class="question__answer">
+					<h4>Lorem ipsum dolor sit amet.</h4>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+						Minima, vitae, provident explicabo voluptates voluptas assumenda
+						maxime ipsa, animi nulla exercitationem praesentium perspiciatis
+						mollitia. Mollitia modi adipisci, itaque dicta numquam eaque.</p>
+				</div>
+			</article>
+
+			<article class="faq">
+				<div class="faq__icon">
+					<i class="fa-solid fa-plus"></i>
+				</div>
+				<div class="question__answer">
+					<h4>Lorem ipsum dolor sit amet.</h4>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+						Minima, vitae, provident explicabo voluptates voluptas assumenda
+						maxime ipsa, animi nulla exercitationem praesentium perspiciatis
+						mollitia. Mollitia modi adipisci, itaque dicta numquam eaque.</p>
+				</div>
+			</article>
+
+			<article class="faq">
+				<div class="faq__icon">
+					<i class="fa-solid fa-plus"></i>
+				</div>
+				<div class="question__answer">
+					<h4>Lorem ipsum dolor sit amet.</h4>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+						Minima, vitae, provident explicabo voluptates voluptas assumenda
+						maxime ipsa, animi nulla exercitationem praesentium perspiciatis
+						mollitia. Mollitia modi adipisci, itaque dicta numquam eaque.</p>
+				</div>
+			</article>
+
+			<article class="faq">
+				<div class="faq__icon">
+					<i class="fa-solid fa-plus"></i>
+				</div>
+				<div class="question__answer">
+					<h4>Lorem ipsum dolor sit amet.</h4>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+						Minima, vitae, provident explicabo voluptates voluptas assumenda
+						maxime ipsa, animi nulla exercitationem praesentium perspiciatis
+						mollitia. Mollitia modi adipisci, itaque dicta numquam eaque.</p>
+				</div>
+			</article>
 
 		</div>
 	</section>
 
+	<!-- ================================== FAQS END ============================ -->
+
+
+	<!-- ================================== Testmonials START ============================ -->
 
 	<section class="container testimonials__container mySwiper">
-		<h2>Information about us</h2>
+		<h2>Students testonials</h2>
 		<div class="swiper-wrapper">
 			<article class="testimonial swiper-slide">
 				<div class="avatar"></div>
@@ -263,7 +393,7 @@
 			</div>
 		</div>
 		<div class="footer__copyright">
-			KeyZONE.store
+			<small>Copyright &copy; Thunder Coding</small>
 		</div>
 	</footer>
 
@@ -272,45 +402,20 @@
 	<script
 		src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 		<script th:src="@{/assets/js/shopping-cart-app.js}"></script>
-		<script th:src="@{/assets/js/shopping-cart-ctrl.js}"></script>
-		
-		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-		 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-		    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-		  </script>
-		
-		  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-		    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
-		  </script>
+<script th:src="@{/assets/js/shopping-cart-ctrl.js}"></script>
 
-		<style>
-		::-webkit-scrollbar {
-			width: 10px;
-		}
-		
-		::-webkit-scrollbar-track {
-			background-color: #6c63ff;
-		}
-		
-		::-webkit-scrollbar-thumb {
-			box-shadow: inset 0 0 6px #1f2641;
-		}
-		
-		.back-to-top {
-		  position: fixed;
-		  top: 0;
-		  left: 0;
-		  z-index: 9999;
-		  background-color: #000;
-		  color: #fff;
-		  padding: 10px;
-		  border-radius: 5px;
-		  cursor: pointer;
-		}
-		a{text-decoration: none;}
-		</style>
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background-color: #6c63ff;
+}
+
+::-webkit-scrollbar-thumb {
+	box-shadow: inset 0 0 6px #1f2641;
+}
+</style>
 	<script>
 		var swiper = new Swiper(".mySwiper", {
 			slidesPerView : 1,
@@ -326,40 +431,7 @@
 				}
 			}
 		});
-		/*back top ul  */
-		function scrollToAnchor(anchor) {
-		      var element = document.getElementById(anchor);
-		      var offset = element.offsetTop;
-		      window.scrollTo(0, offset);
-		    }
-
-		    document.addEventListener("click", function(event) {
-		      if (event.target.tagName === "A") {
-		        scrollToAnchor(event.target.getAttribute("href"));
-		      }
-		    });
-		    
-		    document.getElementById("back-to-top").addEventListener("click", function() {
-		    	  window.scrollTo(0, 0);
-		    	});
-	
-
-		   /* an the  */
-		   function hideLink() {
-		  // Tìm thẻ a
-		  const link = document.querySelector('#a');
-		
-		  // Xóa thẻ a khỏi DOM
-		  link.remove();
-		}
-		
-		// Thêm sự kiện click vào thẻ a
-		document.querySelector('#a').addEventListener('click', hideLink);
-		   
-
 	</script>
-	
-	
 
 </body>
 </html>
