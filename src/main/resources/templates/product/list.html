@@ -1,26 +1,29 @@
 <div xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic (~{::main})}">
-	<main>
+	<main class="row" >
 	
-			<h2 style="margin-top: 100px">Keyboard product</h2>
 	
-            <div class="categories_right" style="width:60% ; margin-left:20%">
-                <div th:each="p: ${items}" class="category">
-               
-					<div class="body" >
-						<a th:href="@{|/product/detail/${p.id}|}" >
-							<img style="width: 50% ;height: 50% ;margin-left: 25%;"  th:src="@{|/assets/images/${p.image}|}">
-						</a>
-					</div>
-					<br>
-					 <div class="head">
-						<div  th:utext="${p.name}"></div>
-					</div>
-					
-					<div class="foot">
-						<b class="pull-left" style="margin-top:5px">$[[${p.price}]]</b>
-						<p th:replace="~{/product/_actions::item_id(${p.id})} " />
-					</div>
-               </div>
-            </div>
+		 <div class="col-sm-12" style="margin-top: 100px">
+		 <h2 >Product</h2>
+			  <form class="d-flex" role="search">
+		        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+		        style="width: 400px; margin-left: 28%">
+		        <button class="btn btn-outline-success" type="submit">Search</button>
+		      </form>
+		 	<div class="row" style="margin-left: 110px; margin-top: 50px">
+		      <div th:each="p: ${items}" class="card"  style="width: 18rem;margin-right: 30px;margin-bottom: 30px">
+		     
+					<a th:href="@{|/product/detail/${p.id}|}" >
+						<img  width="100px" height="200px" th:src="@{|/assets/images/${p.image}|}">
+					</a>
+				  <div class="card-body">
+				    <div  th:utext="${p.name}"></div>
+				    <b class="pull-left" style="margin-top:5px">$[[${p.price}]]</b>
+					<p th:replace="~{/product/_actions::item_id(${p.id})} " />
+				    
+				  </div>
+				
+				</div>
+				</div>
+		</div>
 	</main>
 </div>

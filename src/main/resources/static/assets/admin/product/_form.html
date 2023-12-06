@@ -1,16 +1,16 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<div class="panel panel-default">
-	<div class="panel-heading">PRODUCT EDITION</div>
-	<div class="panel-body">
+<h3 style="margin-left: 10px; margin-bottom: 30px">Product management </h3>
+<div class="shadow-sm p-3 mb-5 bg-body-tertiary rounded">
+	
+	<div class="panel-body" style="margin-bottom:30px" >
 		<div class="row">
 			<div class="col-sm-4 text-center">
 				<label for="image">
-					<img ng-src="{{'/assets/images/'+form.image}}" style="max-width: 100%; height: 200px;">
+					<img ng-src="{{'/assets/images/'+form.image}}" alt="Please select a photo"  style="max-width: 100%; height: 200px;">
 				</label>
 			</div>
 			<div class="col-sm-8">
 				<div class="row">
-					<div class="form-group col-sm-6">
+					<div class="form-group col-sm-6" >
 						<label>Name</label>
 						<input ng-model="form.name" class="form-control">
 					</div>
@@ -21,24 +21,24 @@
 					
 				</div>
 				<div class="row">
-					<div class="form-group col-sm-6">
+					<div class="form-group col-sm-6" style="margin-top: 30px; margin-bottom: 30px">
 						<label>Image</label>
 						<input type="file" class="form-control" id="image"
 							onchange="angular.element(this).scope().imageChanged(this.files)">
 					</div>
-					<div class="form-group col-sm-3">
+					
+					<div class="form-group col-sm-3"  style="margin-top: 30px; margin-bottom: 30px">
 						<label>Category</label>
 						<select ng-model="form.category.id" class="form-control">
 							<option ng-repeat="c in cates" ng-value="c.id">{{c.name}}</option>
 						</select>
 					</div>
-					<div class="form-group col-sm-3">
-						<label>Q</label>
-						
-						
-							<input ng-model="form.orderdetails.id" class="form-control">
-
-					</div>
+					<div class="form-group col-sm-3"   style="margin-top: 30px; margin-bottom: 30px">
+					<label >Quanlity</label> <input type="text"
+						class="form-control" ng-model="form.quantity">
+						</div>
+			
+					
 					
 					
 				</div>
@@ -48,9 +48,9 @@
 						<input ng-model="form.createDate" type="date" class="form-control">
 					</div>
 					<div class="form-group col-sm-6">
-						<label>Available?</label>
+						<label>Sales allowed ?</label>
 						<div class="form-control">
-							<label class="radio-inline">
+							<label class="radio-inline" style="margin-right: 30px">
 								<input ng-model="form.available" type="radio" name="available" ng-value="true">
 								Yes
 							</label>
@@ -65,18 +65,18 @@
 			</div>
 		</div>
 	</div>
-	<div class="panel-footer text-center">
+	<div class="card-header text-center" style="margin-right: 10px">
 		<button ng-click="create()" class="btn btn-primary">
-			<i class="glyphicon glyphicon-plus"></i> Create
+			<i class="fas fa-plus"></i>  Create
 		</button>
-		<button ng-click="update()" class="btn btn-success">
-			<i class="glyphicon glyphicon-save"></i> Update
+		<button ng-click="update()" style="margin: 10px" class="btn btn-success">
+			<i class="far fa-save"></i>Update
 		</button>
-		<button ng-click="delete(form)" class="btn btn-danger">
-			<i class="glyphicon glyphicon-trash"></i> Delete
+		<button ng-click="delete(form)" style="margin-right: 10px" class="btn btn-danger">
+			<i class="fas fa-trash"></i> Delete
 		</button>
 		<button ng-click="reset()" class="btn btn-info">
-			<i class="glyphicon glyphicon-refresh"></i> Reset
+			<i class="fas fa-redo"></i></i> Reset
 		</button>
 	</div>
 </div>
