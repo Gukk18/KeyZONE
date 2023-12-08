@@ -8,17 +8,7 @@
 				<div class="product-information">
 					<div class="row">
 						<div class="col-lg-7">
-							<div class="edit-checkout-head">
-								<div class="breadcrumb-area">
-									<ul>
-										<li>
-											<a class="active" href="/">Home page</a>
-											<i class="fa fa-angle-right"></i>
-										</li>
-										<li>Payment methods</li>
-									</ul>
-								</div>
-							</div>
+							
 							<div class="edit-checkout-information">
 								<div class="edit-checkout-form">
 									<h4 class="title">Address shopping</h4>
@@ -80,6 +70,7 @@
 										</div>
 									</div>
 								</div>
+								
 							</div>
 						</div>
 						<div class="col-lg-5">
@@ -92,15 +83,16 @@
 										</div>
 										<div class="content">
 											<h4 class="title">{{item.name}}</h4>
-											<span class="info">{{item.price | number:3}} $</span>
-											<span class="price">{{item.qty*item.price | number:3}} $</span>
+											<span class="info">{{item.price | number:1}} $</span>
+											<span class="price">{{item.qty*item.price | number:1}} $</span>
 										</div>
 									</div>
+									<hr>
 									<div class="shipping-subtotal">
 										<p>
 											<span>Total</span>
 											<span>
-												<strong>{{cart.amount | number : 3}} $</strong>
+												<strong>{{cart.amount | number : 1}} $</strong>
 											</span>
 										</p>
 										
@@ -109,7 +101,7 @@
 										<p class="total">Total</p>
 										<p class="price">
 											<span class="usd"></span>
-											{{cart.amount | number : 3}} $
+											{{cart.amount | number : 1}} $
 										</p>
 									</div>
 								</div>

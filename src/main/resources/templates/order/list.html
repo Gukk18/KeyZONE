@@ -1,36 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
 <body>
-	<main class="main-content">
-		<div class="page-header-area">
-			<div class="container">
-				<div class="row">
-					<div class="col-12 text-center">
-						<div class="page-header-content">
-							<nav class="breadcrumb-area">
-								<ul class="breadcrumb">
-									<li>
-										<a href="/">Home page</a>
-									</li>
-									<li class="breadcrumb-sep">/</li>
-									<li>Your orders</li>
-								</ul>
-							</nav>
-							<h4 class="title">Your orders</h4>
-						</div>
-					</div>
-				</div>
-			</div>
+	<main class="main-content" >
+		<div class="page-header-area" style="margin-top: 100px">
+			
 		</div>
 		<div class="container my-3">
 			<section class="product-area shopping-cart-area">
 				<div class="row my-3">
 					<div class="col-12">
-						<div class="bg-success text-white p-3">Your orders</div>
+						<div class="bg-success text-white p-3" style="font-size: 0.3in">Your orders</div>
 						<div class="shopping-cart-wrap">
 							<div class="cart-table table-responsive">
-								<table class="table">
-									<thead>
+								<table class="table table-hover">
+									<thead class="bg-success">
 										<tr>
 											<th class="text-center">STT</th>
 											<th>Order code</th>

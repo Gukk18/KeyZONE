@@ -40,9 +40,9 @@ app.controller("product-ctrl",function($scope,$http){
             resp.data.createDate = new Date(resp.data.createDate)
             $scope.items.push(resp.data);
             $scope.reset();
-            alert("Thêm mới thành công!");
+            alert("Create successfully !");
         }).catch(error => {
-            alert("Lỗi thêm mới sản phẩm!");
+            alert("Create erro !");
             console.log("Error",error);
         });
     }
@@ -53,9 +53,9 @@ app.controller("product-ctrl",function($scope,$http){
             var index = $scope.items.findIndex(p => p.id == item.id);
             $scope.items[index] = item;
             $scope.reset();
-            alert("Cập nhật sản phẩm thành công!");
+            alert("Update successfully !");
         }).catch(error => {
-            alert("Lỗi cập nhật sản phẩm!");
+            alert("Update error");
             console.log("Error",error);
         });
     }
@@ -65,9 +65,9 @@ app.controller("product-ctrl",function($scope,$http){
             var index = $scope.items.findIndex(p => p.id == item.id);
             $scope.items.splice(index,1);
             $scope.reset();
-            alert("Xóa sản phẩm thành công!");
+            alert("Delete successfully!");
         }).catch(error => {
-            alert("Lỗi xóa sản phẩm!");
+            alert("Delete error!");
             console.log("Error",error);
         });
     }

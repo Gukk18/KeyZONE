@@ -43,10 +43,15 @@
 
 				</th:block>
 				<th:block th:unless="${#request.remoteUser}">
-					<li><a th:href="@{/auth/login/form}"> Sign In </a></li>
+					<li class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><a>Login </a></li>
 
-					<li><a data-bs-toggle="modal" data-bs-target="#exampleModal">
-							Account </a></li>
+						<ul class="dropdown-menu"  style="background-color: #424890; color: white !important;">
+						  <li><a style=" margin-left: 15px" th:href="@{/auth/login/form}">Account</a></li>
+						  	<hr>
+					        <li><a class="dropdown-item" style="color: white" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#">Login</a></li>
+					      <hr>
+					        <li><a class="dropdown-item" style="color: white" href="#">Create account</a></li>
+					      </ul>
 				</th:block>
 				<div th:replace="~{/layout/_cart-info}"></div>
 			</ul>
@@ -54,7 +59,6 @@
 
 	</nav>
 </div>
-
 
 
 

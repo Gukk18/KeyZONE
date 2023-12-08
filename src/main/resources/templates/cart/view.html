@@ -6,24 +6,22 @@
 	<main class="main-content">
 		<div class="page-header-area">
 			<div class="container">
-				<div class="row">
+				<div class="row" style="margin-top: 100px">
 					<div class="col-12 text-center">
 						<div class="page-header-content">
-							<h4 class="title mt-0">Shopping card</h4>
+							<h4 class="title mt-0" style="font-size: 0.3in">Shopping card</h4>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<section class="product-area shopping-cart-area">
+		<section>
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
-						<div class="shopping-cart-wrap">
-							<div class="cart-table table-responsive">
-								<table class="table">
-									<thead>
+								<table class="table table-hover">
+									<thead style="background-color: #198754">
 										<tr>
 											<th class="indecor-product-remove">Delete product</th>
 											<th class="indecor-product-thumbnail">Image</th>
@@ -38,7 +36,7 @@
 										<tr ng-repeat="item in cart.items">
 											<td class="indecor-product-remove"><a
 												href="javascript:(0);" ng-click="cart.remove(item.id)">
-													<i class="fa fa-trash"></i>
+													<i style="color: black;" class="fa fa-trash"></i>
 											</a></td>
 											<td class="indecor-product-thumbnail"><img class="w-50"
 												src="assets/images/{{item.image}}"></td>
@@ -61,7 +59,7 @@
 										</tr>
 									</tbody>
 								</table>
-							</div>
+							
 							<div class="row">
 								<div class="col-md-12 col-lg-7 col-12">
 									<div class="coupon-all">
@@ -89,7 +87,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+		
 		</section>
 	</main>
 </body>
