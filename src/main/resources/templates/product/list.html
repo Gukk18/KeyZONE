@@ -1,22 +1,72 @@
 <div xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic (~{::main})}">
 	<main>
-		<div class="row">
-			<div th:each="p: ${items}" class="col-sm-4">
-				<div class="panel panel-primary poly-item text-center">
-					<div class="panel-heading">
-						<div class="panel-title" th:utext="${p.name}"></div>
-					</div>
-					<div class="panel-body">
-						<a th:href="@{|/product/detail/${p.id}|}">
-							<img th:src="@{|/assets/images/${p.image}|}">
-						</a>
-					</div>
-					<div class="panel-footer text-right">
-						<b class="pull-left" style="margin-top:5px">$[[${p.price}]]</b>
-						<p th:replace="~{/product/_actions::item_id(${p.id})}" />
-					</div>
-				</div>
+		<header >
+	
+		
+		 <div class="container header_container">
+			<div class="header_left">
+				<h1 style="text-decoration: none; text-align: left ">KeyZONE</h1>
+				<p style="text-align: left">Hello there !. We sell everything related to keyboards,
+					from keycaps to mechanical switches.</p>
+				<a href="#anchor1" class="btn btn-primary" style="margin-right: 200px" >Get Started</a>
+				
 			</div>
+
+
+			<div class="header_right">
+				<div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false">
+		  <div class="carousel-inner">
+		    <div class="carousel-item active">
+		      <img th:src="@{|/assets/images/keyboards-mechanical-keyboard-hd-wallpaper-preview.png|}">
+		    </div>
+		    <div class="carousel-item">
+		      <img th:src="@{|/assets/images/cau6.png|}">
+		    </div>
+		     <div class="carousel-item">
+		      <img th:src="@{|/assets/images/cau5.png|}">
+		    </div>
+		   <!--  <div class="carousel-item">
+		      <img th:src="@{|/assets/images/cau4.png|}">
+		    </div> -->
+		   
+		     
+		  </div>
+		  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		    <span class="visually-hidden">Previous</span>
+		  </button>
+		  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		    <span class="visually-hidden">Next</span>
+		  </button>
+		</div>
+			</div>
+		</div> 
+	</header>
+	<div><h2>KeyZONE Products </h2></div>
+		 <div class="col-sm-12" style="margin-top: 100px">
+		 
+		 
+			  <form class="d-flex" role="search">
+		        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+		        style="width: 400px; margin-left: 28%">
+		        <button class="btn btn-success" type="submit">Search</button>
+		      </form>
+		 	<div class="row" style="margin-left: 110px; margin-top: 50px">
+		      <div th:each="p: ${items}" class="card"  style="width: 18rem;margin-right: 30px;margin-bottom: 30px">
+		     
+					<a th:href="@{|/product/detail/${p.id}|}" >
+						<img  width="100px" height="200px" th:src="@{|/assets/images/${p.image}|}">
+					</a>
+				  <div class="card-body">
+				    <div  th:utext="${p.name}"></div>
+				    <b class="pull-left" style="margin-top:5px">$[[${p.price}]]</b>
+					<p th:replace="~{/product/_actions::item_id(${p.id})} " />
+				    
+				  </div>
+				
+				</div>
+				</div>
 		</div>
 	</main>
 </div>

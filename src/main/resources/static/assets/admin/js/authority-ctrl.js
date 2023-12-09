@@ -1,65 +1,102 @@
-app.controller("authority-ctrl",function($scope,$http,$location){
+app.controller("authority-ctrl", function ($scope, $http, $location) {
+    var url = "/rest/roles";
+    var url1 = "/rest/authorities";
+    var url2 = "/rest/accounts?admin=false";
+    var url3 = "/rest/authorities?admin=false";
     $scope.roles = [];
     $scope.admins = [];
     $scope.authorities = [];
+    
 
-    $scope.initialize = function(){
-        //load all roles
-        $http.get("/rest/roles").then(resp => {
+    
+    $scope.initialize = function () {
+        //load roles
+        $http.get(url).then(resp => {
             $scope.roles = resp.data;
-        })
+        });
 
-        //load staffs and directors(administrators)
-        $http.get("/rest/accounts?admin=true").then(resp => {
+        $http.get(url2).then(resp => {
             $scope.admins = resp.data;
-        })
+        });
 
-        //load authprities of staffs and directors
-        $http.get("/rest/authorities?admin=true").then(resp => {
+        $http.get(url3).then(resp => {
             $scope.authorities = resp.data;
-        }).catch(error => {
-            $location.path("/unauthorized");
-        })
+        });
     }
 
-    $scope.authority_of = function(acc,role){
-        if($scope.authorities){
-            return $scope.authorities.find(ur => ur.account.username == acc.username && ur.role.id==role.id);
+    $scope.authority_of = function (acc, role) {
+        
+        if ($scope.authorities) {
+            return $scope.authorities.find(ur => ur.account.username == acc.username && ur.role.id == role.id);
         }
     }
 
-    $scope.authority_changed = function(acc,role){
-        var authority = $scope.authority_of(acc,role);
-        if(authority){//da cap quyen => thu hoi quyen(xoa)
-            $scope.revoke_authority(authority);
+    $scope.authority_changed = function (acc, role) {
+        var authority = $scope.authority_of(acc, role);
+        console.log(acc, role)
+        if (authority) {
+            $scope.revoke_authority(authority); //da cap quyen => thu hoi quyen(xoa)
         }
-        else{//chua duoc cap quyen => cap quyen(them moi)
-            authority = {account:acc,role:role};
-            $scope.grant_authority(authority);
+        else {
+            authority = { account: acc, role: role };
+            $scope.grant_authority(authority); //chua duoc cap quyen => cap quyen(them moi)
         }
     }
 
     //them moi authority
-    $scope.grant_authority = function(authority){
-        $http.post(`/rest/authorities`,authority).then(resp => {
-            $scope.authorities.push(resp.data)
-            alert("Cap quyen su dung thanh cong!");
+    $scope.grant_authority = function (authority) {
+        $http.post(`${url1}`, authority).then(resp => {
+            $scope.authorities.push(resp.data);
+            alert("Cấp quyền sử dụng thành công!");
         }).catch(error => {
-            alert("Cap quyen su dung that bai!");
-            console.log("Error",error);
-        })
+            alert("Cấp quyền sử dụng thất bại!");
+            console.log("Error: ", error);
+        });
     }
 
     //xoa authority
-    $scope.revoke_authority = function(authority){
-        $http.delete(`/rest/authorities/${authority.id}`).then(resp => {
+    $scope.revoke_authority = function (authority) {
+        $http.delete(`${url1}/${authority.id}`).then(resp => {
             var index = $scope.authorities.findIndex(a => a.id == authority.id);
-            $scope.authorities.splice(index,1);
-            alert("Thu hoi quyen su dung thanh cong!");
+            $scope.authorities.splice(index, 1);
+            alert("Thu hồi quyền sử dụng thành công!");
         }).catch(error => {
-            alert("Thu hoi quyen that bai!");
-            console.log("Error",error);
-        })
+            alert("Thu hồi quyền sử dụng thất bại!");
+            console.log("Error: ", error);
+        });
     }
+
     $scope.initialize();
+
+    //phan trang
+    $scope.pager = {
+        page: 0,
+        size: 10,
+        get admins() {
+            var start = this.page * this.size;
+            return $scope.admins.slice(start, start + this.size);
+        },
+        get count() {
+            return Math.ceil(1.0 * $scope.admins.length / this.size)
+        },
+        first() {
+            this.page = 0;
+        },
+        prev() {
+            this.page--;
+            if (this.page < 0) {
+                this.last();
+            }
+        },
+        next() {
+            this.page++;
+            if (this.page >= this.count) {
+                this.first();
+            }
+        },
+        last() {
+            this.page = this.count - 1;
+        }
+    }
+
 });

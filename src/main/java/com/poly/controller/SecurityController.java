@@ -12,31 +12,31 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class SecurityController {
 	@RequestMapping("/security/login/form")
 	public String loginForm(Model model) {
-		model.addAttribute("message", "Vui lòng đăng nhập!");
+		model.addAttribute("message", "Please click form login!");
 		return "security/login";
 	}
 
 	@RequestMapping("/security/login/success")
 	public String loginSuccess(Model model) {
-		model.addAttribute("message", "Đăng nhập thành công!");
+		model.addAttribute("message", "Login successfuly!");
 		return "security/login";
 	}
 
 	@RequestMapping("/security/login/error")
 	public String loginError(Model model) {
-		model.addAttribute("message", "Sai thông tin đăng nhập!");
+		model.addAttribute("message", "Error login!");
 		return "security/login";
 	}
 
 	@RequestMapping("/security/unauthoried")
 	public String unauthoried(Model model) {
-		model.addAttribute("message", "Không có quyền truy xuất!");
+		model.addAttribute("message", "No access rights!");
 		return "security/login";
 	}
 
 	@RequestMapping("/security/logoff/success")
 	public String logoffSuccess(Model model) {
-		model.addAttribute("message", "Bạn đã đăng xuất!");
+		model.addAttribute("message", "You are logout !");
 		return "security/login";
 	}
 

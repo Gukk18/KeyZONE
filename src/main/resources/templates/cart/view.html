@@ -1,47 +1,94 @@
-<div xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic (~{::main})}">
-	<main>
-		<div class="panel panel-primary" th:fragment="cart_frag">
-			<div class="panel-heading">SHOPPING CART</div>
-			<div ng-if="!cart.items.length" class="panel-body text-center">
-				<h3 style="font-variant: small-caps;">No items in your shopping cart</h3>
-			</div>
-			<table ng-if="cart.items.length" class="table table-collapse table-bordered">
-				<thead class="bg-success" style="font-size:14px">
-					<tr>
-						<th>Id</th>
-						<th>Name</th>
-						<th>Price</th>
-						<th>Quantity</th>
-						<th>Amount</th>
-						<th>#</th>
-					</tr>
-				</thead>
-				<tbody style="font-size:14px">
-					<tr ng-repeat="item in cart.items">
-						<td style="vertical-align:middle;">{{item.id}}</td>
-						<td style="vertical-align:middle;">{{item.name}}</td>
-						<td style="vertical-align:middle;">${{item.price | number : 2}}</td>
-						<td style="vertical-align:middle;">
-							<input ng-change="cart.saveToLocalStorage()" ng-model="item.qty" type="number" min="1"
-								style="width: 60px;" />
-						</td>
-						<td style="vertical-align:middle;">${{cart.amt_of(item) | number : 2}}</td>
-						<td style="vertical-align:middle;">
-							<button ng-click="cart.remove(item.id)" class="btn btn-sm btn-danger">
-								<i class="glyphicon glyphicon-trash"></i>
-							</button>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<div ng-if="cart.items.length" class="panel-footer">
-				<button ng-click="cart.clear()" class="btn btn-danger">
-					<i class="glyphicon glyphicon-trash"></i> Clear
-				</button>
-				<a th:href="@{/order/checkout}" class="btn btn-primary">
-					<i class="glyphicon glyphicon-hand-right"></i> Checkout
-				</a>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+
+<body>
+	<main class="main-content">
+		<div class="page-header-area">
+			<div class="container">
+				<div class="row" style="margin-top: 100px">
+					<div class="col-12 text-center">
+						<div class="page-header-content">
+							<h4 class="title mt-0" style="font-size: 0.3in">Shopping card</h4>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
+
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+								<table class="table table-hover">
+									<thead style="background-color: #198754">
+										<tr>
+											<th class="indecor-product-remove">Delete product</th>
+											<th class="indecor-product-thumbnail">Image</th>
+											<th class="indecor-product-name">Category product</th>
+											<th class="indecor-product-price">Price</th>
+											<th class="indecor-product-quantity">Quality</th>
+											
+											<th class="indecor-product-subtotal">Total</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="item in cart.items">
+											<td class="indecor-product-remove"><a
+												href="javascript:(0);" ng-click="cart.remove(item.id)">
+													<i style="color: black;" class="fa fa-trash"></i>
+											</a></td>
+											<td class="indecor-product-thumbnail"><img class="w-50"
+												src="assets/images/{{item.image}}"></td>
+											<td class="indecor-product-name">
+												<h4 class="title">{{item.name}}</h4>
+											</td>
+											<td class="indecor-product-price"><span class="price">{{item.price
+													| number:3}} $</span></td>
+                                             
+
+											<td class="indecor-product-quantity"><input
+												type="number" pattern="[0-9]*" id="spinner" name="value"
+												value="1" min="1" max="200" step="1"
+												ng-change="cart.saveToLocalStorage()" ng-model="item.qty">
+											</td>
+											
+
+											<td class="indecor-product-subtotal"><span class="price">{{item.qty*item.price
+													| number:3}} $</span></td>
+										</tr>
+									</tbody>
+								</table>
+							
+							<div class="row">
+								<div class="col-md-12 col-lg-7 col-12">
+									<div class="coupon-all">
+										<div class="coupon">
+											<a class="button" href="/">Continute shopping</a> <a
+												class="button" href="javascript:(0);"
+												ng-click="cart.clear()">Clear shopping cart</a>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12 col-lg-5 col-12">
+									<div class="cart-page-total">
+										<h3>Total</h3>
+										<ul>
+											<li>Total <span class="money">{{cart.amount |
+													number : 3}}$</span>
+											</li>
+											
+										</ul>
+										<a class="proceed-to-checkout-btn"  th:href="@{/cart/checkout}">
+											Purchase</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		
+		</section>
 	</main>
-</div>
+</body>
+</html>
