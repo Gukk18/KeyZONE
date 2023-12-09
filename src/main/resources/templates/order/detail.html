@@ -1,52 +1,85 @@
-<div xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic (~{::main})}">
-	<main th:object="${order}">
-		<div class="panel panel-primary">
-			<div class="panel-heading">ORDER INFORMATION</div>
-			<div class="panel-body">
-				<div class="row">
-					<div class="form-group col-sm-4">
-						<div>Order Number:</div>
-						<input th:field="*{id}" class="form-control" readonly>
-					</div>
-					<div class="form-group col-sm-4">
-						<div>Purchaser:</div>
-						<input th:field="*{account.username}" class="form-control" readonly>
-					</div>
-					<div class="form-group col-sm-4">
-						<div>Purchased Date:</div>
-						<input th:field="*{createDate}" class="form-control" readonly>
-					</div>
-				</div>
-				<div class="row">
-					<div class="form-group col-sm-12">
-						<div>Shipping Address:</div>
-						<textarea th:field="*{address}" class="form-control" readonly></textarea>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+	<main class="main-content">
+		<div class="page-header-area">
+			<div class="container">
+				<div class="page-header-area" style="margin-top: 100px">
+			
+		</div>
+			</div>
+		</div>
+		<div class="container my-3" th:object="${order}" >
+			<div class="account-form-wrap" style="padding: 0; box-shadow: none;">
+				<div class="login-form">
+					<div class="bg-success text-white p-3" style="font-size: 0.3in">Infomation order</div>
+					<div class="row mt-2 mx-2">
+						<div class="form-group col-sm-4">
+							<label class="form-label">Order code:</label>
+							<input th:field="*{id}" class="form-control" readonly>
+						</div>
+						<div class="form-group col-sm-4">
+							<label class="form-label">Purchaser:</label>
+							<input th:field="*{account.username}" class="form-control" readonly>
+						</div>
+						<div class="form-group col-sm-4">
+							<label class="form-label">Date purchase:</label>
+							<input th:field="*{createDate}" class="form-control" readonly>
+						</div>
+						<div class="form-group col-sm-12 mb-3">
+							<label class="form-label">Delivery address:</label>
+							<input th:field="*{address}" class="form-control" readonly>
+						</div>
+						<h4>Status:
+						    <span class="text-success" th:switch="*{status}">
+						        <span th:case="'CHOXULY'">Waiting for progressing</span>
+						        <span th:case="'DANGXULY'">Processing</span>
+						        <span th:case="'HOANTHANH'">Complete</span>
+								<span th:case="'HUY'">Cancel</span>
+						        <span th:case="*">Order status unknown</span>
+						    </span></h4>
+
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="panel panel-primary">
-			<div class="panel-heading">ORDER LINES</div>
-			<table class="table table-collapse table-bordered">
-				<thead class="bg-success" style="font-size:14px">
-					<tr>
-						<th>Id</th>
-						<th>Name</th>
-						<th>Price</th>
-						<th>Quantity</th>
-						<th>Amount</th>
-					</tr>
-				</thead>
-				<tbody style="font-size:14px">
-					<tr th:each="detail: *{orderDetails}" th:object="${detail}">
-						<th style="vertical-align:middle;">[[*{product.id}]]</th>
-						<td style="vertical-align:middle;">[[*{product.name}]]</td>
-						<td style="vertical-align:middle;">$[[*{#numbers.formatDecimal(price, 0, 'COMMA', 2, 'POINT')}]]</td>
-						<td style="vertical-align:middle;">[[*{quantity}]]</td>
-						<td style="vertical-align:middle;">$[[*{#numbers.formatDecimal(price*quantity, 0, 'COMMA', 2, 'POINT')}]]</td>
-					</tr>
-				</tbody>
-			</table>
+			<section class="product-area shopping-cart-area">
+				<div class="row my-3">
+					<div class="col-12">
+						<div class="bg-success text-white p-3" style="font-size: 0.3in">Infomation order</div>
+						<div class="shopping-cart-wrap">
+							<div class="cart-table table-responsive">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>Name product</th>
+											<th>Price</th>
+											<th>Quanlity</th>
+											
+											<th>Total</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="detail:*{orderDetails}" th:object="${detail}">
+											<td class="align-middle price">[[*{product.id}]]</td>
+											<td class="align-middle text-start">[[*{product.name}]]</td>
+											<td class="align-middle price">[[*{#numbers.formatDecimal(price,0,'COMMA',3,'POINT')}]] $</td>
+											<td class="align-middle">[[*{quantity}]]</td>
+											
+											<td class="align-middle price">[[*{#numbers.formatDecimal(price*quantity,0,'COMMA',3,'POINT')}]] $</td>
+											
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<h3 th:text="${order.account.username}"></h3>
+			<a  th:if="${order.status == 'CHOXULY'}" th:attr="ng-click=@{'cancelOrder(\'' + ${order.account.username} + '\', ' + ${order.id} + ')'}" class="btn btn-danger pull-right my-2 mx-4">Hủy đơn hàng</a>
+			<a th:href="@{/order/list}" class="btn-theme pull-right my-2">Back to your order</a>
 		</div>
 	</main>
-</div>
+</body>
+</html>

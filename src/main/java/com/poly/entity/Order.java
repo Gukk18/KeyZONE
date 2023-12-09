@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,11 +27,12 @@ import lombok.Data;
 @Table(name = "Orders")
 public class Order implements Serializable {
 
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
 	String address;
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "Createdate")
 	Date createDate = new Date();
 
@@ -39,6 +41,19 @@ public class Order implements Serializable {
 	Account account;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "order")
+	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
 	List<OrderDetail> orderDetails;
+
+	@Column(name = "status", nullable = true)
+	String status;
+
+	public void addOrderDetail(OrderDetail orderDetail) {
+		orderDetails.add(orderDetail);
+		orderDetail.setOrder(this);
+	}
+
+	public void removeOrderDetail(OrderDetail orderDetail) {
+		orderDetails.remove(orderDetail);
+		orderDetail.setOrder(null);
+	}
 }

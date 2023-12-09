@@ -1,31 +1,113 @@
 <div xmlns:th="http://www.thymeleaf.org">
+	<nav>
+	
 
-<nav>
-	<div class="container nav_container">
-		<a th:href="@{/}">KeyZONE</a>
-
-		<ul class="nav_menu">
-			<th:block th:if="${#request.remoteUser}">
-				<li
-					th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}">
-					<a th:href="@{/admin/home/index}">Administration</a>
-				</li>
-				<li><a th:href="@{/order/list}">Your Orders</a></li>
-				<li><a th:href="@{/security/logoff}">Sign Out</a></li>
-			</th:block>
-			<th:block th:unless="${#request.remoteUser}">
-				<li><a th:href="@{/security/login/form}">Sign In</a></li>
-			</th:block>
-			<div th:replace="~{/layout/_cart-info}"></div>
-			 
-			
-			
+		<div class="container nav_container">
+			<a th:href="@{/}">KeyZONE</a>
+			<h5 class="pull-left text-danger" style="font-size: 20px" th:text="${message}"></h5>
 
 
-		</ul>
-	</div>
+			<ul class="nav_menu">
+				<li><a href="#profile" data-bs-toggle="modal" data-bs-target="#exampleModal1"> 
+				[[${#request.remoteUser}]]</a></li>
 
-</nav>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" role="button"
+					data-bs-toggle="dropdown" aria-expanded="false"> Category </a>
+					<ul class="dropdown-menu"
+						style="width: 175px; background-color: #424890; color: white">
+
+						<th:block th:each="c:${cates}">
+							<a th:href="@{|/?cid=${c.id}|}" style="margin: 5px"
+								class="list-group-item"> <i
+								class="glyphicon glyphicon-chevron-right"></i> <span
+								th:text="${c.name}"></span>
+							</a>
+							<hr>
+						</th:block>
+					</ul></li>
+				<!-- <li><a data-bs-toggle="modal" data-bs-target="#exampleModal">
+						Introduce </a></li>
+ -->
+
+
+
+				<th:block th:if="${#request.remoteUser}">
+				
+					<li
+						th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}">
+						<a th:href="@{/admin}">Admin Panel</a>
+					</li>
+					<li><a th:href="@{/order/list}">Your Orders</a></li>
+					<li><a th:href="@{/auth/logout}">Sign Out</a></li>
+
+				</th:block>
+				<th:block th:unless="${#request.remoteUser}">
+					<li class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><a>Login </a></li>
+
+						<ul class="dropdown-menu"  style="background-color: #424890; color: white !important;">
+						  <li><a style=" margin-left: 15px" th:href="@{/auth/login/form}">Account</a></li>
+						  	<hr>
+					        <li><a class="dropdown-item" style="color: white" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#">Login</a></li>
+					      <hr>
+					        <li><a class="dropdown-item" style="color: white" th:href="@{/auth/forgot-password}">Forgot password</a></li>
+					     
+					      <hr>
+					        <li><a class="dropdown-item" style="color: white"  th:href="@{/auth/change-password}">Change password</a></li>
+					      </ul>
+				</th:block>
+				<div th:replace="~{/layout/_cart-info}"></div>
+			</ul>
+		</div>
+
+	</nav>
+</div>
+
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: black;">Profile</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      	<a><span class="border" >
+      
+      	<img style="width: 150px; height: 150px; color: black; margin-left: 35%" alt="" src="">
+      	</span> 
+      	</a>
+      	<br>
+      	<label style="color: black;">User name: </label>
+      	<br>
+      	<input type="text">
+      	<br>
+      	<label style="color: black;">Full name: </label>
+      	<br>
+      	<input type="text">
+      	<br>
+      	<label  style="color: black;">Email: </label>
+      	<br>
+      	<input type="email">
+      	<br>
+      	<button class="btn btn-info"  style="color: black; background-color: aqua">Change password</button>
+      	
+      
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" style="height: 50px">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 
