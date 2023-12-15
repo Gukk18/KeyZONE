@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+
+<body>
+	<main class="main-content">
+	
+		
+		<section class="product-area product-information-area">
+		<div class="bg-success text-white p-3" style="font-size: 0.3in; margin-bottom: 30px">Your cart</div>
+			<div class="container">
+				<div class="product-information">
+					<div class="row">
+					<div class="col-sm-12" >
+							<div class="shipping-cart-subtotal-wrapper">
+								<div class="row">
+								
+									<div class="shadow-none p-3 mb-5 bg-body-tertiary rounded" style="color: #565c64 ;width: 200px ;margin: 3px" ng-repeat="item in cart.items">
+										<div class="col-sm-12">
+										<div>
+											<img src="../../assets/images/{{item.image}}" width="100%">
+											<span class="quantity">{{item.qty}}</span>
+											
+												<h4 class="title">{{item.name}}</h4>
+											<span class="info">{{item.price | number:1}} $</span>
+											<span class="price">{{item.qty*item.price | number:1}} $</span>
+										</div>
+										
+										<div >
+										
+										</div>
+									</div>
+									</div>
+									<hr>
+									<h4 style="margin-bottom: 30px">
+											<b >
+												Total : {{cart.amount | number : 1}} $
+											</b>
+									</h4>
+									
+								</div>
+							</div>
+						</div>
+						
+							<div class="col-sm-12" >
+							
+							<div class="edit-checkout-information" style="margin-left: 110px">
+								<div class="edit-checkout-form">
+								
+									<div class="row row-gutter-12">
+										<div class="col-lg-5" style="margin: 5px">
+											<div class="form-floating">
+												<span class="form-control" style="line-height: 2.25;" id="username">[[${#request.remoteUser}]]</span>
+												<label>User name</label>
+											</div>
+										</div>
+										<div class="col-lg-5"  style="margin: 5px">
+											<div class="form-floating">
+												<span class="form-control" style="line-height: 2.25;">{{$auth.user.email}}</span>
+												<label>Email</label>
+											</div>
+										</div>
+										<div class="col-lg-5"  style="margin: 5px">
+											<div class="form-floating">
+												<span class="form-control" style="line-height: 2.25;">{{$auth.user.fullname}}</span>
+												<label>Full name</label>
+											</div>
+										</div>
+										
+										<div class="col-lg-5"  style="margin: 5px">
+											<div class="form-floating">
+												<span class="form-control" style="line-height: 2.25;">{{order.createDate |
+													date:'dd-MM-yyyy'}}</span>
+												<label>Order date</label>
+											</div>
+										</div>
+										<div class="col-lg-5"  style="margin: 5px">
+											<div class="form-floating">
+												<select class="form-select form-control">
+													<option value="1" selected>Vietnam</option>
+													<option value="2">Singapore</option>
+													<option value="3">United States</option>
+												</select>
+												<div class="field-caret"></div>
+												<label for="floatingInput6rid">Nation</label>
+											</div>
+										</div>
+										<div class="col-lg-5"  style="margin: 5px">
+										
+											<div class="form-floating">
+												<input type="text" class="form-control" placeholder="address">
+												<label>Post Code</label>
+											</div>
+										</div>
+									
+										<div class="col-lg-10"  style="margin:5px">
+											<label style="text-align: center;">Address</label>
+												<textarea class="form-control" placeholder="Address" ng-model="order.address"></textarea>										
+										</div>
+										
+										
+										<div class="col-sm-10"  style="margin-top: 3px">
+										
+										
+											
+											<a class="btn btn-success" style="background-color: #ffc107" th:href="@{/cart/view}">
+											<svg xmlns="http://www.w3.org/2000/svg" width="16" style="margin-right: 3px" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+											  <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
+											  <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+											</svg>
+											Back to card
+											</a>
+											
+										
+											
+												<button style="background-color: #17b46c" class="btn btn-success" ng-click="order.purchase()">
+												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+												fill="currentColor" class="bi bi-check-lg"
+												viewBox="0 0 16 16">
+												  <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022" />
+												</svg>
+												Purchase</button>
+												
+										
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+</body>
+</html>

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class SecurityController {
 	@RequestMapping("/security/login/form")
 	public String loginForm(Model model) {
-		model.addAttribute("message", "Please login!");
+		model.addAttribute("message", "Please click form login!");
 		return "security/login";
 	}
 

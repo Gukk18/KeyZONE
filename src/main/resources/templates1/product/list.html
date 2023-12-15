@@ -1,0 +1,30 @@
+<div xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic (~{::main})}">
+	<main >
+			
+			
+
+
+		<link th:href="@{/assets/css/stylepl.css}" rel="stylesheet" />
+
+		      
+		 	<div class="row" style="margin-left: 110px; "  >
+		 
+		      <div th:each="p: ${items}" class="card"  style="width: 18rem;margin-right: 30px;margin-bottom: 30px;margin-top: 100px">
+		     
+					<a th:href="@{|/product/detail/${p.id}|}" >
+						<img  width="50px" height="200px" th:src="@{|/assets/images/${p.image}|}">
+					</a>
+				  <div class="card-body">
+				    <h4  th:utext="${p.name}"></h4>
+				    <div class="pull-left" style="margin-top:5px">Price: $[[${p.price}]]</div>
+					<p th:replace="~{/product/_actions::item_id(${p.id})} " />
+				    
+				  </div>
+				
+			
+				</div>
+				</div>
+		</main>
+		
+
+</div>

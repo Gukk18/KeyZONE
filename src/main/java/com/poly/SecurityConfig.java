@@ -7,6 +7,7 @@ import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -29,21 +30,36 @@ import com.poly.service.AccountService;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
+	AccountService accountService;
+
+	@Autowired
 	BCryptPasswordEncoder pe;
 
 	@Autowired
-	AccountService accountService;
+	DataSource dataSource;
 
 	@Autowired
 	HttpSession session;
 
-	// Cung cấp nguồn dữ liệu đăng nhập
+	@Bean
+	public BCryptPasswordEncoder getPasswordEncoder() {
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		return new BCryptPasswordEncoder();
+	}
+
+
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
+	}
+
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(username -> {
 			try {
 				Account user = accountService.findById(username);
-				String password = pe.encode(user.getPassword());
+				String password = pe.encode(user.getPassword()); 
 				String[] roles = user.getAuthorities().stream().map(er -> er.getRole().getId())
 						.collect(Collectors.toList()).toArray(new String[0]);
 				Map<String, Object> authentication = new HashMap<>();
@@ -58,28 +74,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		});
 	}
 
-	// Phân quyền sử dụng
-	@Override
+
+
 	protected void configure(HttpSecurity http) throws Exception {
+
 		http.csrf().disable();
-		http.authorizeRequests().antMatchers("/order/**").authenticated().antMatchers("/admin/**")
-				.hasAnyRole("DIRE", "STAF").antMatchers("/rest/authorities").hasRole("DIRE").anyRequest().permitAll();
-		http.formLogin().loginPage("/security/login/form").loginProcessingUrl("/security/login")
-				.defaultSuccessUrl("/security/login/success", false).failureUrl("/security/login/error");
-		http.rememberMe().tokenValiditySeconds(86400);
-		http.exceptionHandling().accessDeniedPage("/security/unauthoried");
-		http.logout().logoutUrl("/security/logoff").logoutSuccessUrl("/security/logoff/success");
-	}
-
-	// Cơ chế mã hóa mật khẩu
-	@Bean
-	public BCryptPasswordEncoder getPasswordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
-
-	// Cho phép truy xuất REST API từ domain khác
-	@Override
-	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
+	
+		http.authorizeRequests().antMatchers("/order/**", "/auth/change-password").authenticated()
+				.antMatchers("/admin/**").hasAnyRole("STAF", "DIRE")
+				.antMatchers("/rest/authorities").hasRole("DIRE").anyRequest().permitAll();
+	
+		http.formLogin().loginPage("/auth/login/form").loginProcessingUrl("/auth/login")
+				.defaultSuccessUrl("/auth/login/success", false).failureUrl("/auth/login/error");
+		http.rememberMe().tokenValiditySeconds(86400); 
+		
+		http.exceptionHandling().accessDeniedPage("/auth/unauthoried");
+	
+		http.logout().logoutUrl("/auth/logout").logoutSuccessUrl("/auth/logout/success");
+	
+		http.oauth2Login().loginPage("/auth/login/form").defaultSuccessUrl("/oauth2/login/success", true)
+				.failureUrl("/auth/login/error").authorizationEndpoint().baseUri("/oauth2/authorization");
 	}
 }
